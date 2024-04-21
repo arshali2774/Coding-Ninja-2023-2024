@@ -5,7 +5,6 @@ import {
   validateRegisteration,
 } from '../middleware/validation.middleware.js';
 import UserModel from '../model/user.model.js';
-import { AllJobs } from '../model/jobs.model.js';
 
 const router = express.Router();
 
@@ -14,7 +13,13 @@ router.get('/', (req, res) => {
 });
 router.get('/postjob', (req, res) => {
   const userName = req.session?.userName;
-  res.render('postJob', { userName });
+  if (userName) {
+    return res.render('postJob', { userName });
+  }
+  return res.render('home', {
+    userName,
+    errors: 'User not found. Register First.',
+  });
 });
 router.get('/login', (req, res) => {
   res.render('login', { userName: null, errors: null });
@@ -45,6 +50,7 @@ router.get('/logout', (req, res) => {
       res.redirect('/');
     }
   });
+  res.clearCookie();
 });
 
 export default router;

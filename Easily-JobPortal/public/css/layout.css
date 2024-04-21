@@ -166,7 +166,7 @@ nav {
 
 main {
   padding: 3rem;
-  height: calc(100vh - 6rem);
+  min-height: calc(100vh - 6rem);
   #wrapper_home {
     display: flex;
     align-items: center;
@@ -216,13 +216,16 @@ main {
   }
   #wrapper_jobs {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     .jobs {
       border: 2px solid var(--moonstone);
       background-color: var(--ultra_violet);
       border-radius: 10px;
       padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      height: 30rem;
       .active,
       .in_active {
         display: flex;
@@ -289,7 +292,6 @@ main {
       }
       .details {
         background-color: var(--tiffany_blue);
-        display: block;
         text-align: center;
         border: none;
         border-radius: 5px;
@@ -302,6 +304,7 @@ main {
         color: var(--dark_purple);
         font-weight: 500;
         transition: all 0.3s ease-in-out;
+        margin-top: auto;
         &:hover {
           background-color: var(--dark_purple);
           color: var(--moonstone);
@@ -510,11 +513,11 @@ form {
 
 #wrapper_jobs_single {
   background-color: var(--moonstone_transparent);
-  backdrop-filter: blur(10px);
   width: 80%;
   margin: 0 auto;
   padding: 2rem 4rem;
   border-radius: 10px;
+  position: relative;
   h2 {
     text-align: center;
     color: white;
@@ -525,9 +528,9 @@ form {
     display: grid;
     justify-content: space-around;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     #info_details {
-      grid-row: 1/3;
+      grid-row: 1/4;
       p {
         margin-bottom: 1rem;
         font-size: 1.2rem;
@@ -556,10 +559,10 @@ form {
     #last_details {
       display: flex;
       align-items: flex-end;
-      justify-content: space-between;
-      #apply_btn {
-        background-color: var(--dark_purple);
-        color: var(--moonstone);
+      gap: 1rem;
+      #apply_btn,
+      #edit_btn,
+      #delete_btn {
         border-radius: 5px;
         padding: 10px 15px;
         font-family: inherit;
@@ -568,16 +571,192 @@ form {
         scale: 0.9;
         cursor: pointer;
         transition: all 0.3s ease-in-out;
+      }
+      #apply_btn {
+        background-color: var(--dark_purple);
+        color: var(--moonstone);
         &:hover {
           scale: 1;
           box-shadow: 5px 5px 0 0 var(--moonstone);
         }
       }
-      #last_posted_cont {
+      #edit_btn {
+        background-color: var(--moonstone);
+        color: var(--dark_purple);
+        &:hover {
+          scale: 1;
+          box-shadow: 5px 5px 0 0 var(--dark_purple);
+        }
+      }
+      #delete_btn {
+        background-color: rgb(205, 7, 20);
+        color: white;
+        &:hover {
+          scale: 1;
+          box-shadow: 5px 5px 0 0 var(--dark_purple);
+        }
+      }
+    }
+    #last_posted_cont {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+  }
+  #apply_modal {
+    background-color: var(--dark_purple_transparent);
+    backdrop-filter: blur(10px);
+    width: 35%;
+    height: min-content;
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+    padding: 1rem;
+    visibility: hidden;
+    opacity: 0;
+    h2 {
+      font-size: 1.5rem;
+      color: var(--moonstone);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    form {
+      border-bottom: none;
+      padding: 1rem;
+      .input_label_container {
         display: flex;
-        gap: 0.5rem;
+        background-color: var(--tiffany_blue);
+        padding-left: 1rem;
+        color: var(--dark_purple);
+        border-radius: 10px;
         align-items: center;
+        font-size: 1rem;
+        overflow: hidden;
+        label {
+          width: 8rem;
+          color: inherit;
+          font-size: inherit;
+        }
+        input {
+          font-size: inherit;
+          flex-grow: 1;
+          color: inherit;
+          font-family: inherit;
+          height: 2rem;
+          background-color: var(--dark_purple_transparent);
+          border: none;
+          padding: 0.5rem;
+          &::placeholder {
+            font-family: inherit;
+            color: inherit;
+          }
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+      #btn_div {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+      }
+      #submit {
+        color: var(--dark_purple);
+        background-color: var(--moonstone);
+      }
+      #close {
+        color: white;
+        background-color: rgb(205, 7, 20);
+      }
+      button {
+        border: 3px solid var(--dark_purple);
+
+        font-size: 1.2rem;
+        width: min-content;
+        align-self: center;
+        border-radius: 10px;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        scale: 0.9;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          box-shadow: 5px 5px 0 0 var(--dark_purple);
+          scale: 1;
+        }
       }
     }
   }
+}
+
+#wrapper_postjob {
+  background: var(--moonstone_transparent);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 2rem;
+  height: 100%;
+  h1 {
+    text-align: center;
+    color: var(--dark_purple);
+  }
+  #post_job_form {
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    border: none;
+    select,
+    input {
+      height: 3rem;
+      border-radius: 10px;
+      border: 1px solid var(--dark_purple);
+      background-color: var(--dark_purple);
+      color: var(--moonstone);
+      font-family: inherit;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      &:focus {
+        outline: none;
+        box-shadow: 0px 0px 0px 5px var(--dark_purple_transparent);
+      }
+    }
+    #skills {
+      grid-column: 3/4;
+      grid-row: 1/3;
+      height: 100%;
+    }
+    input::placeholder {
+      color: var(--moonstones);
+    }
+    #form_submit {
+      background-color: var(--moonstone);
+      color: var(--dark_purple);
+      border: 3px solid var(--dark_purple);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 1.5rem;
+      grid-column: 1/4;
+      margin-top: 1rem;
+      padding: 0.5rem;
+      cursor: pointer;
+      scale: 0.9;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        scale: 1;
+        box-shadow: 5px 5px 0 0 var(--dark_purple);
+      }
+    }
+  }
+}
+input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }

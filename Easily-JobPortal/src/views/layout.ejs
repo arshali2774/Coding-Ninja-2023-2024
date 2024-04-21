@@ -2,24 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HomePage</title>
-    <link
-      rel="stylesheet"
-      href="/css/layout.css"
-    />
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
       rel="stylesheet"
@@ -33,45 +20,21 @@
     <header>
       <nav>
         <div id="left_nav">
-          <a
-            href="/"
-            class="logo"
-            >easily</a
-          >
-          <a
-            href="/"
-            class="links"
-            >Home</a
-          >
-          <a
-            href="/jobs"
-            class="links"
-            >Jobs</a
-          >
+          <a href="/" class="logo">easily</a>
+          <a href="/" class="links">Home</a>
+          <a href="/jobs" class="links">Jobs</a>
           <label class="dropdown">
             <div class="dd-button links">
               <%if(userName){%> <%=userName%> <%}else{%> Recruiter <%}%>
               <i class="fa-solid fa-caret-down"></i>
             </div>
-            <input
-              type="checkbox"
-              class="dd-input"
-              id="test"
-            />
+            <input type="checkbox" class="dd-input" id="test" />
             <ul class="dd-menu">
               <li>
                 <%if(userName){%>
-                <a
-                  href="/logout"
-                  id="login_nav"
-                  >Logout</a
-                >
+                <a href="/logout" id="login_nav">Logout</a>
                 <%}else{%>
-                <a
-                  href="/login"
-                  id="login_nav"
-                  >Login</a
-                >
+                <a href="/login" id="login_nav">Login</a>
                 <%}%>
               </li>
               <li class="divider"></li>

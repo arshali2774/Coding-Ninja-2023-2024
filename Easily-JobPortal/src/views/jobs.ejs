@@ -1,7 +1,7 @@
 <div id="wrapper_jobs">
-  <%AllJobs.map(jobs=>{%>
+  <%AllJobs.map(job=>{%>
   <div class="jobs">
-    <%if(jobs.active){%>
+    <%if(job.active){%>
     <div class="active">
       <p>Actively hiring</p>
       <i class="fa-solid fa-chart-line"></i>
@@ -12,24 +12,22 @@
       <i class="fa-solid fa-box-archive"></i>
     </div>
     <%}%>
-    <p class="company_name"><%=jobs.companyName%></p>
-    <p class="position"><%=jobs.department%> <span><%=jobs.position%></span></p>
+    <p class="company_name"><%=job.companyName%></p>
+    <p class="position">
+      <%=job.jobCategory%> <span><%=job.jobDesignation%></span>
+    </p>
     <p class="location">
-      <i class="fa-solid fa-location-dot"></i> <%= jobs.location%>
+      <i class="fa-solid fa-location-dot"></i> <%= job.jobLocation%>
     </p>
     <p class="salary">
-      <i class="fa-solid fa-indian-rupee-sign"></i> <%=jobs.salary%>
+      <i class="fa-solid fa-indian-rupee-sign"></i> <%=job.salary%>
     </p>
     <div class="skills">
-      <%jobs.skills.forEach(skill=>{%>
+      <%job?.skills?.forEach(skill=>{%>
       <p class="skill"><%=skill%></p>
       <%})%>
     </div>
-    <a
-      href="/jobs/<%=jobs.id%>"
-      class="details"
-      >View Details</a
-    >
+    <a href="/jobs/<%=job.id%>" class="details">View Details</a>
   </div>
   <%})%>
 </div>

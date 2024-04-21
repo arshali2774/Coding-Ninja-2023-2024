@@ -11,6 +11,7 @@ import ejsLayouts from 'express-ejs-layouts';
 const app = express();
 // Get the directory name of the current module file
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 //Middlewares
 app.use(ejsLayouts);
 app.use(express.urlencoded({ extended: true }));
@@ -24,7 +25,6 @@ app.use(
     saveUninitialized: true,
   })
 );
-
 //EJS
 app.set('view engine', 'ejs');
 app.set('views', path.join(path.resolve(), 'src', 'views'));
@@ -32,6 +32,7 @@ app.set('views', path.join(path.resolve(), 'src', 'views'));
 //Routes
 import authRoutes from './src/routes/authRoutes.js';
 import jobRoutes from './src/routes/jobRoutes.js';
+
 app.use(authRoutes);
 app.use('/jobs', jobRoutes);
 
