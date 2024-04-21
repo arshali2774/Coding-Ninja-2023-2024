@@ -1,0 +1,48 @@
+<div id="wrapper_jobs_single">
+  <h2>
+    <%= jobDetails.position%> opportunity in <%=jobDetails.location%> at
+    <%=jobDetails.companyName%>
+  </h2>
+  <div id="details">
+    <div id="info_details">
+      <p id="company_name">
+        <i class="fa-solid fa-building"></i> <%=jobDetails.companyName%>
+      </p>
+      <p id="position">
+        <i class="fa-solid fa-briefcase"></i> <%=jobDetails.department%>
+        <%=jobDetails.position%>
+      </p>
+      <p id="location">
+        <i class="fa-solid fa-location-dot"></i> <%=jobDetails.location%>
+      </p>
+      <p id="salary">
+        <i class="fa-solid fa-indian-rupee-sign"></i> <%=jobDetails.salary%>
+      </p>
+      <p id="due_date">
+        <i class="fa-solid fa-hourglass-half"></i> <%=jobDetails.dueDate%>
+      </p>
+      <p id="openings">
+        <i class="fa-solid fa-chart-simple"></i> Number of Openings:
+        <%=jobDetails.numberOfOpenings%>
+      </p>
+      <p id="applicants">
+        <i class="fa-solid fa-users"></i> Applicants:
+        <%=jobDetails.currentApplicants%>
+      </p>
+    </div>
+    <div id="skills_details">
+      <%jobDetails.skills.forEach(skill=>{%>
+      <p><%=skill%></p>
+      <%})%>
+    </div>
+    <div id="last_details">
+      <button id="apply_btn">Apply Now</button>
+      <div id="last_posted_cont">
+        <p>Last Posted:</p>
+        <%jobDetails.lastPosted.forEach(last=>{%>
+        <p class="last_posted"><%=last%></p>
+        <%})%>
+      </div>
+    </div>
+  </div>
+</div>
