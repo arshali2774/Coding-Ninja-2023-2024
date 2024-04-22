@@ -1,6 +1,10 @@
 import express from 'express';
+import ProductRouter from './src/features/product/routes/product.routes.js';
 
 const app = express();
+
+// handle product routes
+app.use('/api/products', ProductRouter);
 
 app.get('/', (req, res) => {
   res.send('aaaa');

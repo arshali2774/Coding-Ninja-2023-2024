@@ -12,6 +12,9 @@ src
  |    |__ cart
  |    |__ order
  |    |__ product
+ |    |    |__ controllers
+ |    |    |__ routes
+ |    |
  |    |__ user
  |
  |__ middlewares
@@ -19,9 +22,22 @@ src
 
 ## API structure
 
-### Product Controller
+### Product
 
-- **GET**: fetch all products.
-- **POST**: add a new product.
-- **GET**: get a single product.
-- **PUT**: rate a product.
+- Root Path: `/api/products/`
+- These are the details of the `Product` API's.
+
+#### Product Controller
+
+- `getProducts()`: fetch all products.
+- `addProduct()`: add a new product.
+- `getSingleProduct()`: fetch a single product.
+- `rateProduct()`: update the rating of a product.
+
+#### Product Routes
+
+- `/api/products`
+  - `/` **GET**: fetch all products.
+  - `/` **POST**: add a new product.
+  - `/:id` **GET**: fetch a single product.
+  - `/:id` **PUT**: update the rating of a product.
