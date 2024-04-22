@@ -8,8 +8,32 @@ export default class ProductModel {
     this.price = price;
     this.sizes = sizes;
   }
-  static getAll() {
+  static getAllProducts() {
     return products;
+  }
+  static addProduct(product) {
+    product.id = products.length + 1;
+    products.push(product);
+    return product;
+  }
+  static getSingleProduct(id) {
+    const productToFind = products.find((i) => i.id === id);
+    if (!productToFind) {
+      throw new Error('Product not found');
+    }
+    return productToFind;
+  }
+  static filterProducts(minPrice, maxPrice, category) {
+    const filteredProducts = products.filter(
+      (product) =>
+        (!minPrice || product.price >= minPrice) &&
+        (!maxPrice || product.price <= maxPrice) &&
+        (!category || product.category === category)
+    );
+    if (!filteredProducts) {
+      throw new Error('No product present under these filters');
+    }
+    return filteredProducts;
   }
 }
 

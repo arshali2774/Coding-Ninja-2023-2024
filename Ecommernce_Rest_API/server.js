@@ -1,7 +1,11 @@
 import express from 'express';
 import ProductRouter from './src/features/product/routes/product.routes.js';
+import bodyParser from 'body-parser';
 
 const app = express();
+
+//middlewares
+app.use(bodyParser.json());
 
 // handle product routes
 app.use('/api/products', ProductRouter);
