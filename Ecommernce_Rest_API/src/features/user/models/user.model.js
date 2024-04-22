@@ -22,9 +22,12 @@ export default class UserModel {
       (u) => u.email === email && u.password === password
     );
     if (!user) {
-      throw new Error('Invalid Credentials');
+      throw new Error('User not found. Please Sign Up.');
     }
     return user;
+  }
+  static getAllUsers() {
+    return users;
   }
 }
 

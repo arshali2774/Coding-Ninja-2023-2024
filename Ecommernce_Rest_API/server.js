@@ -2,6 +2,7 @@ import express from 'express';
 import ProductRouter from './src/features/product/routes/product.routes.js';
 import bodyParser from 'body-parser';
 import UserRouter from './src/features/user/routes/user.routes.js';
+import basicAuth from './src/middlewares/basicAuth.middleware.js';
 
 const app = express();
 
@@ -9,7 +10,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // handle product routes
-app.use('/api/products', ProductRouter);
+app.use('/api/products', basicAuth, ProductRouter);
 app.use('/api/users', UserRouter);
 
 app.get('/', (req, res) => {

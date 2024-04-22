@@ -52,7 +52,30 @@ src
   - When i created `filter` route i put it below the `id` route. Then only the `id` route was running.
   - It seems like the user can't hit the `filter` route.
   - To fix this we need to move the `filter` route above the `id` route.
-  - Routes with URL parameters `/:id` are less specific than routes without them
+  - Routes with URL parameters `/:id` are less specific than routes without them.
+- Basic Authentication
+  - Creating a middleware to protect routes which requires user authorization.
+  - Check if `authorization` header is in request or not.
+  - If not then return the response with status code `401`.
+  - If it is present then decode the authorization details from `base64` to `string`.
+  - Then compare with the existing users, if we get a user with same creds then we can access the api.
+  - Otherwise we send a response with `401`, _Invalid Creds_.
+- Why Basic Authentication bad?
+  - No encryption = not secure. It uses encoding and decoding.
+  - Client needs to store creds which can be exposed.
+  - Easy to crack using brute force.
+- JWT: JSON web token
+  - Encrypted token. Uses hasing, so once the creds is ecrypted using hashing it cannot be reversed back like we did in basic authentication.
+  - It is Stateless.
+  - Easy to scale.
+  - Can be used on mobile and web both.
+  - Structure:
+    - Let us take a JWT token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`
+    - We can see that the token consist of two period characters '.' .
+    - The token is divided into 3 parts. [Header](eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9).[Payload](eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ).[Signature](SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c)
+      - Header[[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9]]:
+        - `{"alg": "HS256","typ": "JWT"}`
+        - This displays which encryption algo is used and what is the type of
 
 ## API structure
 
