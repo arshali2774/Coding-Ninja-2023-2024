@@ -28,10 +28,9 @@ src
  |    |    |__ model
  |    |
  |    |__ user
- |    |    |__ controllers
- |    |    |__ routes
- |    |    |__ model
- |    |
+ |         |__ controllers
+ |         |__ routes
+ |         |__ model
  |
  |__ middlewares
 ```
@@ -81,9 +80,16 @@ src
 
 ### User
 
-- Root Path: `/api/user/`
+- Root Path: `/api/users/`
 - Used for authentication and security purpose.
 
 #### User Controller
 
+- `signUp()`: creating a new user.
+- `signIn()`: signing in an exixting user.
+
 #### User Routes
+
+- `/api/users`
+  - `/signup` **POST**: creating a new user.
+  - `/signin` **POST**: signing in an exixting user.
