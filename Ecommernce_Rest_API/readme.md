@@ -13,13 +13,25 @@ public
 src
  |__ features
  |    |__ cart
+ |    |    |__ controllers
+ |    |    |__ routes
+ |    |    |__ model
+ |    |
  |    |__ order
+ |    |    |__ controllers
+ |    |    |__ routes
+ |    |    |__ model
+ |    |
  |    |__ product
  |    |    |__ controllers
  |    |    |__ routes
  |    |    |__ model
  |    |
  |    |__ user
+ |    |    |__ controllers
+ |    |    |__ routes
+ |    |    |__ model
+ |    |
  |
  |__ middlewares
 ```
@@ -56,6 +68,7 @@ src
 - `addProduct()`: add a new product.
 - `getSingleProduct()`: fetch a single product.
 - `rateProduct()`: update the rating of a product.
+- `getFilteredProducts()`: fetching filtered products based on user.
 
 #### Product Routes
 
@@ -64,3 +77,13 @@ src
   - `/` **POST**: add a new product.
   - `/:id` **GET**: fetch a single product.
   - `/:id` **PUT**: update the rating of a product.
+  - `/filter` **GET**: using query params like `/filter?minPrice=10&maxPrice=20`.
+
+### User
+
+- Root Path: `/api/user/`
+- Used for authentication and security purpose.
+
+#### User Controller
+
+#### User Routes
