@@ -73,7 +73,7 @@ src
     - Let us take a JWT token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`
     - We can see that the token consist of two period characters '.' .
     - The token is divided into 3 parts. [Header](eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9).[Payload](eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ).[Signature](SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c)
-      - Header[[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9]]:
+      - [Header](eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9):
         - `{"alg": "HS256","typ": "JWT"}`
         - This displays which encryption algo is used and what is the type of
 
