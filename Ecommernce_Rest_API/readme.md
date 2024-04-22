@@ -85,6 +85,11 @@ src
       - [Signature](#signature)
         - `HMACSHA256(base64UrlEncode(header) + "." +base64UrlEncode(payload),your-256-bit-secret)`
         - Using this we create the token.
+- How JWT works?
+  - **Client** --> Login With Credentials(`/signin`) --> **Server** --> Creates a JWT Token.
+  - **Server** --> Sends the token to client in response --> **Client**.
+  - **Client** --> Send the token in authorization header --> **Server** --> Verifies JWT Token, Access client info.
+  - **Server** --> Send response to client --> **Client**.
 
 ## API structure
 
