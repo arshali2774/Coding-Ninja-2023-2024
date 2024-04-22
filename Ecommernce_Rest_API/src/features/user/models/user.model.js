@@ -39,4 +39,5 @@ let users = [
     'sellerPassword',
     'seller'
   ),
+  new UserModel(2, 'Buyer User', 'buyer@ecom.com', 'buyerPassword', 'buyer'),
 ];

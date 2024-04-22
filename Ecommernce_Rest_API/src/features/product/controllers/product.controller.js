@@ -40,5 +40,15 @@ export default class ProductController {
       res.status(404).json({ error: error.message });
     }
   }
-  rateProduct(req, res) {}
+  rateProduct(req, res) {
+    const userID = Number(req.query.userID);
+    const productID = Number(req.query.productID);
+    const rating = req.query.rating;
+    try {
+      ProductModel.rateProduct(userID, productID, rating);
+      return res.status(200).json({ success: true, msg: 'Product rated' });
+    } catch (error) {
+      return res.status(400).json({ error: error.message });
+    }
+  }
 }
