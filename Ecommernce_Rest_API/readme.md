@@ -86,10 +86,23 @@ src
         - `HMACSHA256(base64UrlEncode(header) + "." +base64UrlEncode(payload),your-256-bit-secret)`
         - Using this we create the token.
 - How JWT works?
-  - **Client** --> Login With Credentials(`/signin`) --> **Server** --> Creates a JWT Token.
+  - **Client** --> Login With Credentials (`/signin`) --> **Server** --> Creates a JWT Token.
   - **Server** --> Sends the token to client in response --> **Client**.
   - **Client** --> Send the token in authorization header --> **Server** --> Verifies JWT Token, Access client info.
   - **Server** --> Send response to client --> **Client**.
+- Send Token from client side
+  - Import `jwt`, then create a `token` variable.
+  - `const token = jwt.sign(payload,secretKey,options)`.
+  - here `sign` is a method in `jwt` which accepts multiple arguments but we focus on 3 main.
+  - payload about user, like `userID` or `email`.
+  - a strong random secret key.
+  - options contain many things but we used `expiresIn` option so that the token expires in some time.
+  - as using this token any one can login.
+- JWT middleware.
+  - Read the token: Token must be in `req.headers` with the property of `Authorization`.
+  - Check if token is present or not: If token not present return with status 401 **unauthorized**.
+  - Check if token is valid: We use `jwt.verify(token,secretKey)` to check if token is valid or not, if token is valid it will return a payload. If not it will give error also if token expires then this verification will also return error, so we use a `trycatch` block.
+  - Call next middleware.
 
 ## API structure
 
