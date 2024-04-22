@@ -75,7 +75,16 @@ src
     - The token is divided into 3 parts. [Header](#header).[Payload](#payload).[Signature](#signature)
       - [Header](#header):
         - `{"alg": "HS256","typ": "JWT"}`
-        - This displays which encryption algo is used and what is the type of
+        - This displays which encryption algo is used and what is the type of token.
+      - [Payload](#payload):
+        - `{"sub": "1234567890","name": "John Doe","iat": 1516239022}`.
+        - More data from user.
+        - What resources user can access.
+        - We can add certain role information to know is the user which is authenticated is admin or not.
+        - Don't store sensitive information such as password.
+      - [Signature](#signature)
+        - `HMACSHA256(base64UrlEncode(header) + "." +base64UrlEncode(payload),your-256-bit-secret)`
+        - Using this we create the token.
 
 ## API structure
 
