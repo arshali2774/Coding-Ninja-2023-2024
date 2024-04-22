@@ -14,6 +14,7 @@ src
  |    |__ product
  |    |    |__ controllers
  |    |    |__ routes
+ |    |    |__ model
  |    |
  |    |__ user
  |
