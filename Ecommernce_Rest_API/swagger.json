@@ -1,0 +1,64 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "description": "API E-commerce Coding Ninja",
+    "title": "E-commerce API"
+  },
+  "host": "localhost:3000",
+  "securityDefinitions": {
+    "JWT": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
+  "paths": {
+    "/api/users/signin": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Login",
+        "description": "User login to get token",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "user credentials",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": { "type": "string" },
+                "password": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect Credentials"
+          }
+        }
+      }
+    },
+    "/api/products": {
+      "get": {
+        "tags": ["Products"],
+
+        "summary": "Get Products",
+        "description": "Get all products",
+        "security": [{ "JWT": {} }],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized  "
+          }
+        }
+      }
+    }
+  }
+}
