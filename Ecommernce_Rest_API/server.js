@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import UserRouter from './src/features/user/routes/user.routes.js';
 import basicAuth from './src/middlewares/basicAuth.middleware.js';
 import jwtAuth from './src/middlewares/jwt.middleware.js';
+import CartRouter from './src/features/cart/routes/cart.routes.js';
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 // handle product routes
 app.use('/api/products', jwtAuth, ProductRouter);
 app.use('/api/users', UserRouter);
+app.use('/api/carts', jwtAuth, CartRouter);
 
 app.get('/', (req, res) => {
   res.send('aaaa');

@@ -6,6 +6,7 @@ const jwtAuth = (req, res, next) => {
   }
   try {
     const payload = jwt.verify(token, 'M63BuTEqXKd4KdpPCAd2010Ic4tIaSrT');
+    req.userID = payload.userID;
   } catch (error) {
     console.log(error);
     return res.status(401).send('Unauthorized');

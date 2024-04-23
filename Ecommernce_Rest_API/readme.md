@@ -143,3 +143,19 @@ src
 - `/api/users`
   - `/signup` **POST**: creating a new user.
   - `/signin` **POST**: signing in an exixting user.
+
+### Cart
+
+- Root Path: `/api/carts/`
+- Used for adding cart items.
+
+#### User Controller
+
+- `add()`: adding a cart item.
+- `getUserCarts()`: getting all cart items for a user.
+
+#### User Routes
+
+- `/api/carts`
+  - `/` **POST**: adding a cart item. Using query param `/api/carts?productID=1&userId=1&quantity=2`
+  - `/` **GET**: getting all cart items for a user.
