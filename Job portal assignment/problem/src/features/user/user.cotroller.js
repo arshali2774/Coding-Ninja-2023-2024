@@ -2,10 +2,10 @@ import {
   updateUserPasswordRepo,
   userLoginRepo,
   userRegisterationRepo,
-} from "./user.repository.js";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
-import { customErrorHandler } from "../../middlewares/errorHandler.js";
+} from './user.repository.js';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import { customErrorHandler } from '../../middlewares/errorHandler.js';
 
 export const userRegisteration = async (req, res, next) => {
   let { password } = req.body;
@@ -14,7 +14,7 @@ export const userRegisteration = async (req, res, next) => {
   if (resp.success) {
     res.status(201).json({
       success: true,
-      msg: "user registration successful",
+      msg: 'user registration successful',
       res: resp.res,
     });
   } else {
@@ -26,14 +26,14 @@ export const userLogin = async (req, res, next) => {
   if (resp.success) {
     const token = jwt.sign(
       { _id: resp.res._id, user: resp.res },
-      "codinNinjas",
+      'codinNinjas',
       {
-        expiresIn: "1h",
+        expiresIn: '1h',
       }
     );
     res
-      .cookie("jwtToken", token, { maxAge: 1 * 60 * 60 * 1000, httpOnly: true })
-      .json({ success: true, msg: "user login successful", token });
+      .cookie('jwtToken', token, { maxAge: 1 * 60 * 60 * 1000, httpOnly: true })
+      .json({ success: true, msg: 'user login successful', token });
   } else {
     next(new customErrorHandler(resp.error.statusCode, resp.error.msg));
   }
@@ -44,7 +44,7 @@ export const updateUserPassword = async (req, res, next) => {
   if (resp.success) {
     res.status(201).json({
       success: true,
-      msg: "password updated successfully",
+      msg: 'password updated successfully',
       res: resp.res,
     });
   } else {
@@ -53,5 +53,5 @@ export const updateUserPassword = async (req, res, next) => {
 };
 
 export const userLogout = (req, res, next) => {
-  res.clearCookie("jwtToken").json({ success: true, msg: "logout successful" });
+  res.clearCookie('jwtToken').json({ success: true, msg: 'logout successful' });
 };
