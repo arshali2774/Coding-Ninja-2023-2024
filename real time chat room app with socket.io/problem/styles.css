@@ -16,17 +16,22 @@ body {
   padding: 1rem 2rem;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: rgb(12, 19, 55);
+  position: relative;
+  z-index: 10;
 }
 
 #login-container {
   padding: 1rem;
   background-color: #1a254c;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 #login-form {
   display: flex;
   gap: 10px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: inherit;
   font-size: 1.3rem;
   input {
     flex-grow: 1;

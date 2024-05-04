@@ -60,20 +60,51 @@ Implement the features inside the script tag -->
 
       const loginForm = document.getElementById('login-form');
       const messageForm = document.getElementById('message-form');
+      const loginContainer = document.getElementById('login-container');
+
       let username, roomId;
+      //welcome New user
+      function displayWelcomeMessage(message) {
+        loginContainer.style.transform = 'translateY(-100%)';
+        const welcomeContainer = document.createElement('div');
+        welcomeContainer.style.height = 'calc(80px - 1rem)';
+        welcomeContainer.style.width = '100%';
+        welcomeContainer.style.padding = '1rem';
+        welcomeContainer.style.backgroundColor = '#1a254c';
+        welcomeContainer.style.position = 'absolute';
+        welcomeContainer.style.top = '100%';
+        welcomeContainer.style.left = '0';
+        welcomeContainer.style.display = 'flex';
+        welcomeContainer.style.justifyContent = 'center';
+        welcomeContainer.style.alignItems = 'center';
+        const welcomeText = document.createElement('p');
+        welcomeText.innerText = message;
+        welcomeText.style.color = 'rgb(253, 198, 198)';
+        welcomeText.style.fontFamily = 'inherit';
+        welcomeText.style.fontSize = '1.5rem';
+        welcomeContainer.appendChild(welcomeText);
+        loginContainer.appendChild(welcomeContainer);
+      }
       // Function to display messages
       function displayMessage(data) {
         const messageDisplay = document.getElementById('message-display');
         const messageElement = document.createElement('div');
         const messageUsername = document.createElement('p');
         const messageUserMessage = document.createElement('p');
-        const { name, message } = data;
+        const messageTime = document.createElement('p');
+        const { name, message, timestamp } = data;
         messageUsername.innerText = name;
         messageUserMessage.innerText = message;
-
+        messageTime.innerText = timestamp.formattedTime;
         messageUsername.style.color = 'rgb(181, 90, 89)';
         messageUsername.style.fontWeight = 'bold';
+        messageUsername.style.fontSize = '11px';
         messageUserMessage.style.color = 'rgb(253, 198, 198)';
+        messageUserMessage.style.fontSize = '22px';
+        messageUserMessage.style.marginBottom = '5px';
+        messageTime.style.color = 'rgb(206, 121, 120)';
+        messageTime.style.fontSize = '11px';
+        messageTime.style.alignSelf = 'flex-end';
 
         if (username === name) {
           messageElement.style.alignSelf = 'flex-end';
@@ -84,10 +115,10 @@ Implement the features inside the script tag -->
         messageElement.style.padding = '.5rem 1rem';
         messageElement.style.display = 'flex';
         messageElement.style.flexDirection = 'column';
-        messageElement.style.gap = '5px';
         messageElement.style.borderRadius = '10px';
         messageElement.appendChild(messageUsername);
         messageElement.appendChild(messageUserMessage);
+        messageElement.appendChild(messageTime);
         messageDisplay.appendChild(messageElement);
         messageDisplay.scrollTop = messageDisplay.scrollHeight;
       }
@@ -136,6 +167,10 @@ Implement the features inside the script tag -->
       // Listen for incoming messages
       socket.on('roomAlert', function (message) {
         displayRoomAlert(message);
+      });
+      // Listen for incoming messages
+      socket.on('welcome', function (message) {
+        displayWelcomeMessage(message);
       });
     </script>
   </body>
