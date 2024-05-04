@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client side chat app</title>
+  </head>
+  <body>
+    <div class="chat-container">
+      <div id="message-list"></div>
+      <input
+        type="text"
+        id="message-input"
+        placeholder="type message..."
+        name="message"
+      />
+      <button type="button" id="send-message">Send</button>
+    </div>
+    <!-- socket import -->
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <!-- javascript code to connect to backend via socket -->
+    <script>
+      //connection to socket
+      const socket = io.connect('http://localhost:3000');
+      //get username
+      const username = prompt('enter your name');
+      //emit username to server
+      socket.emit('join', username);
+      //get ui elements
+      const messageInput = document.getElementById('message-input');
+      const messageList = document.getElementById('message-list');
+      const sendButton = document.getElementById('send-message');
+
+      // on button click perform action
+      sendButton.addEventListener('click', function () {
+        // read the message from input and send to server
+        const message = messageInput.value;
+        if (message) {
+          socket.emit('new_message', message);
+          //add message to message list
+          const messageBox = document.createElement('div');
+          messageBox.innerText = username + ': ' + message;
+          messageList.appendChild(messageBox);
+
+          messageInput.value = '';
+        }
+      });
+      //listen for the broadcast message and add it to the list
+      socket.on('broadcast_message', (userMessage) => {
+        const messageBox2 = document.createElement('div');
+        messageBox2.innerText =
+          userMessage.username + ': ' + userMessage.message;
+        messageList.appendChild(messageBox2);
+      });
+    </script>
+  </body>
+</html>
